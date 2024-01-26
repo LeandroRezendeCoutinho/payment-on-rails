@@ -18,6 +18,7 @@ class ChargesController < ApplicationController
     @charge = Charge.new(charge_params)
 
     if @charge.save
+      ChargeJob.perform_async(@charge.id)
       render json: @charge, status: :created, location: @charge
     else
       render json: @charge.errors, status: :unprocessable_entity
