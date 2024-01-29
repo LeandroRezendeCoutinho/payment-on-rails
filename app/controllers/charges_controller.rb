@@ -1,5 +1,5 @@
 class ChargesController < ApplicationController
-  before_action :set_charge, only: %i[ show update destroy ]
+  before_action :set_charge, only: %i[ show ]
 
   # GET /charges
   def index
@@ -33,6 +33,6 @@ class ChargesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def charge_params
-      params.require(:charge).permit(:Capture, :Status, :OrderId, :PaymentType, :SourceType)
+      params.require(:charge).permit(:capture, :status, :order_id, :payment_type, :source_type)
     end
 end
