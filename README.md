@@ -24,3 +24,12 @@
 
 ## Architecture
 ![Architecture diagram](./images/architecture.png)
+
+### AWS localstack
+- Configure localstack
+    - `aws configure --endpoint-url=http://localhost:4566`
+        - AWS Access Key ID [None]: 00000000000000000000
+        - AWS Secret Access Key [None]: 00000000000000000000
+        - Default region name [None]: us-east-1
+- Configure AWS SQS
+    - `aws sqs create-queue --queue-name charge --endpoint-url=http://localhost:4566`
