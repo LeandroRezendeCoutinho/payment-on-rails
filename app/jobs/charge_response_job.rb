@@ -1,5 +1,5 @@
 class ChargeResponseJob < ApplicationJob
-  queue_as :charge
+  queue_as 'charge'
 
   def perform(args)
     Rails.logger.info("Starting ChargeResponseJob: #{args}")

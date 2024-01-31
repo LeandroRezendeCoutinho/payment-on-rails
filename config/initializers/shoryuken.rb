@@ -10,4 +10,7 @@ Shoryuken.configure_server do |config|
 end
 
 Shoryuken::Client.sqs.create_queue(queue_name: ENV['SQS_QUEUE_NAME'])
-Shoryuken.sqs_client_receive_message_opts = { wait_time_seconds: 0 }
+Shoryuken.sqs_client_receive_message_opts = {
+  wait_time_seconds: 20,
+  max_number_of_messages: 1
+}
