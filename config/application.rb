@@ -48,7 +48,5 @@ module PaymentOnRails
     config.middleware.use ActionDispatch::Cookies
 
     config.middleware.use config.session_store, config.session_options
-
-    config.active_job.queue_adapter = :shoryuken
   end
 end

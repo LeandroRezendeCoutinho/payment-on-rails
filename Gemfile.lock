@@ -284,10 +284,6 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     set (1.1.0)
-    shoryuken (6.1.1)
-      aws-sdk-core (>= 2)
-      concurrent-ruby
-      thor
     sidekiq (7.2.1)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -335,7 +331,6 @@ DEPENDENCIES
   ruby-lsp
   ruby-lsp-rails
   ruby-lsp-rspec
-  shoryuken
   sidekiq (~> 7.2.1)
   tzinfo-data
 
