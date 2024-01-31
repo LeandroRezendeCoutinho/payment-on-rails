@@ -44,11 +44,13 @@ gem 'sidekiq', '~> 7.2.1'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
+  gem 'dotenv'
   gem 'rspec-rails', '~> 6.1.0'
   gem 'rubocop', '~> 1.60', require: false
   gem 'ruby-lsp', require: false
   gem 'ruby-lsp-rails'
   gem 'ruby-lsp-rspec', require: false
+  gem 'shoryuken'
 end
 
 group :development do

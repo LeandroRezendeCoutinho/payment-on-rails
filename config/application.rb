@@ -17,6 +17,7 @@ require "action_cable/engine"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+Dotenv.load
 
 module PaymentOnRails
   class Application < Rails::Application
@@ -47,5 +48,7 @@ module PaymentOnRails
     config.middleware.use ActionDispatch::Cookies
 
     config.middleware.use config.session_store, config.session_options
+
+    config.active_job.queue_adapter = :shoryuken
   end
 end

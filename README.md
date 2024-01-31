@@ -33,3 +33,6 @@
         - Default region name [None]: us-east-1
 - Configure AWS SQS
     - `aws sqs create-queue --queue-name charge --endpoint-url=http://localhost:4566`
+
+#### AWS reference
+- https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/sqs-example-send-messages.html

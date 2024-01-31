@@ -101,6 +101,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
     drb (2.2.0)
       ruby2_keywords
     enumerize (2.5.0)
@@ -269,6 +270,10 @@ GEM
       ruby-lsp (~> 0.13.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    shoryuken (6.1.1)
+      aws-sdk-core (>= 2)
+      concurrent-ruby
+      thor
     sidekiq (7.2.1)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -300,6 +305,7 @@ DEPENDENCIES
   aws-sdk-sqs (~> 1.70)
   bootsnap
   debug
+  dotenv
   enumerize (~> 2.5.0)
   faraday
   money-rails (~> 1.15)
@@ -311,6 +317,7 @@ DEPENDENCIES
   ruby-lsp
   ruby-lsp-rails
   ruby-lsp-rspec
+  shoryuken
   sidekiq (~> 7.2.1)
   tzinfo-data
 
