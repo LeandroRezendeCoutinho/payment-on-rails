@@ -1,8 +1,8 @@
-class ChargeResponseJob < ApplicationJob
+class PaymentResponseJob < ApplicationJob
   queue_as 'charge'
 
   def perform(args)
-    Rails.logger.info("Starting ChargeResponseJob: #{args}")
+    Rails.logger.info("Starting PaymentResponseJob: #{args}")
     update_status(args)
     send_response(args)
   end
@@ -30,7 +30,7 @@ class ChargeResponseJob < ApplicationJob
       }.to_json
     end
   rescue Faraday::Error => e
-    logger.error("Charge request failed with error: #{e.message}")
+    logger.error("Payment request failed with error: #{e.message}")
     raise e
   end
 end

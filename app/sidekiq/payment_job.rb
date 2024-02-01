@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChargeJob # rubocop:disable Style/Documentation
+class PaymentJob
   include Sidekiq::Job
   sidekiq_options queue: 'default', retry: 5
 
@@ -15,7 +15,7 @@ class ChargeJob # rubocop:disable Style/Documentation
     parsed_response['charge_id'] = charge.id
     parsed_response['status'] = 'authorized'
     Rails.logger.info("Charge response: #{parsed_response}")
-    ChargeResponseJob.perform_later(parsed_response)
+    PaymentResponseJob.perform_later(parsed_response)
   end
 
   private
@@ -26,7 +26,7 @@ class ChargeJob # rubocop:disable Style/Documentation
       headers: { 'Content-Type' => 'application/json' }
     )
 
-    conn.post('/charges') do |req|
+    conn.post('/payments') do |req|
       req.body = {
         amount: charge.amount_cents,
         capture: charge.capture,

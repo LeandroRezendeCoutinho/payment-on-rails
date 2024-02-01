@@ -12,9 +12,9 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/charges", type: :request do
+RSpec.describe "/payments", type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # Charge. As you add validations to Charge, be sure to
+  # Payment. As you add validations to Payment, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -26,7 +26,7 @@ RSpec.describe "/charges", type: :request do
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
-  # ChargesController, or in your router and rack
+  # PaymentsController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
     {}
@@ -34,48 +34,48 @@ RSpec.describe "/charges", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Charge.create! valid_attributes
-      get charges_url, headers: valid_headers, as: :json
+      Payment.create! valid_attributes
+      get payments_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      charge = Charge.create! valid_attributes
-      get charge_url(charge), as: :json
+      payment = Payment.create! valid_attributes
+      get payment_url(payment), as: :json
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Charge" do
+      it "creates a new Payment" do
         expect {
-          post charges_url,
-               params: { charge: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(Charge, :count).by(1)
+          post payments_url,
+               params: { payment: valid_attributes }, headers: valid_headers, as: :json
+        }.to change(Payment, :count).by(1)
       end
 
-      it "renders a JSON response with the new charge" do
-        post charges_url,
-             params: { charge: valid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the new payment" do
+        post payments_url,
+             params: { payment: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Charge" do
+      it "does not create a new Payment" do
         expect {
-          post charges_url,
-               params: { charge: invalid_attributes }, as: :json
-        }.to change(Charge, :count).by(0)
+          post payments_url,
+               params: { payment: invalid_attributes }, as: :json
+        }.to change(Payment, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new charge" do
-        post charges_url,
-             params: { charge: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the new payment" do
+        post payments_url,
+             params: { payment: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -88,28 +88,28 @@ RSpec.describe "/charges", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested charge" do
-        charge = Charge.create! valid_attributes
-        patch charge_url(charge),
-              params: { charge: new_attributes }, headers: valid_headers, as: :json
-        charge.reload
+      it "updates the requested payment" do
+        payment = Payment.create! valid_attributes
+        patch payment_url(payment),
+              params: { payment: new_attributes }, headers: valid_headers, as: :json
+        payment.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the charge" do
-        charge = Charge.create! valid_attributes
-        patch charge_url(charge),
-              params: { charge: new_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the payment" do
+        payment = Payment.create! valid_attributes
+        patch payment_url(payment),
+              params: { payment: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a JSON response with errors for the charge" do
-        charge = Charge.create! valid_attributes
-        patch charge_url(charge),
-              params: { charge: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the payment" do
+        payment = Payment.create! valid_attributes
+        patch payment_url(payment),
+              params: { payment: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -117,11 +117,11 @@ RSpec.describe "/charges", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested charge" do
-      charge = Charge.create! valid_attributes
+    it "destroys the requested payment" do
+      payment = Payment.create! valid_attributes
       expect {
-        delete charge_url(charge), headers: valid_headers, as: :json
-      }.to change(Charge, :count).by(-1)
+        delete payment_url(payment), headers: valid_headers, as: :json
+      }.to change(Payment, :count).by(-1)
     end
   end
 end

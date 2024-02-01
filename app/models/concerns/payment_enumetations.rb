@@ -1,7 +1,7 @@
-module ChargeEnumetations
+module PaymentEnumetations
   extend Enumerize
 
-   enumerize :status, in: [
+  enumerize :status, in: [
     :pending,
     :pre_authorized,
     :authorized,

@@ -1,4 +1,5 @@
 require 'rails_helper'
-RSpec.describe ChargeJob, type: :job do
+
+RSpec.describe Payment, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -1,6 +1,6 @@
-class CreateCharges < ActiveRecord::Migration[7.1]
+class CreatePayments < ActiveRecord::Migration[7.1] # rubocop:disable Style/Documentation
   def change
-    create_table :charges do |t|
+    create_table :payments do |t|
       t.monetize :amount
       t.boolean :capture
       t.string :status
