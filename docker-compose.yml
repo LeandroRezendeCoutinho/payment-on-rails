@@ -10,6 +10,22 @@ services:
       - "3000:3000"
     depends_on:
       - db
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+  hutch:
+    build: .
+    command: bundle exec hutch
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - rabbitmq
   db:
     image: postgres:16.1-alpine
     volumes:
@@ -27,18 +43,19 @@ services:
     ports:
       - '6379:6379'
     volumes: 
-      - redis:/data
-  localstack:
-    image: localstack/localstack
+      - redis_data:/data
+  rabbitmq:
+    image: rabbitmq:3.12-alpine
+    container_name: rabbitmq
     ports:
-      - "127.0.0.1:4566:4566"            # LocalStack Gateway
-      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
-    environment:
-      - DEBUG=${DEBUG:-0}
+      - "5672:5672"  # RabbitMQ default port
+      - "15672:15672"  # RabbitMQ management plugin
     volumes:
-      - localstack_data:/var/lib/localstack
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - rabbitmq_data:/var/lib/rabbitmq  # Persist RabbitMQ data
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
 volumes:
-  localstack_data:
+  redis_data:
+  rabbitmq_data:
   postgres_data:
-  redis:
