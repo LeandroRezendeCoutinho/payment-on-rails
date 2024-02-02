@@ -45,16 +45,16 @@ services:
     volumes: 
       - redis_data:/data
   rabbitmq:
-    image: rabbitmq:3.12-alpine
+    image: rabbitmq:3.12-management-alpine
     container_name: rabbitmq
     ports:
       - "5672:5672"  # RabbitMQ default port
       - "15672:15672"  # RabbitMQ management plugin
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq  # Persist RabbitMQ data
-    environment:
-      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
-      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    # environment:
+    #   - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+    #   - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
 volumes:
   redis_data:
   rabbitmq_data:
