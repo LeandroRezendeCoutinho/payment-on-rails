@@ -18,7 +18,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.new(payment_params)
 
     if @payment.save
-      PaymentJob.perform_async(@charge.id)
+      PaymentJob.perform_async(@payment.id)
       render json: @payment, status: :created, location: @payment
     else
       render json: @payment.errors, status: :unprocessable_entity

@@ -1,16 +1,19 @@
-class PaymentResponseJob < ApplicationJob
-  queue_as 'charge'
+class PaymentConsumer
+  include Hutch::Consumer
+  consume 'payment.response'
+  queue_name 'payments'
 
-  def perform(args)
-    Rails.logger.info("Starting PaymentResponseJob: #{args}")
-    update_status(args)
-    send_response(args)
+  def process(args)
+    logger.info("Starting PaymentResponseJob: #{args}")
+    response = args['subject']
+    update_status(response)
+    send_response(response)
   end
 
   private
 
   def update_status(args)
-    Charge.update(args.fetch('charge_id'), status: args.fetch('status'))
+    Payment.update(args.fetch('payment_id'), status: args.fetch('status'))
   end
 
   def send_response(args)

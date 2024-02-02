@@ -4,4 +4,3 @@ Hutch::Config.set(:mq_username, ENV['RABBITMQ_USER'])
 Hutch::Config.set(:mq_password, ENV['RABBITMQ_PASSWORD'])
 
 # Hutch::Logging.logger = Rails.logger
-Hutch.connect

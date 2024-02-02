@@ -4,18 +4,18 @@ class PaymentJob
   include Sidekiq::Job
   sidekiq_options queue: 'default', retry: 5
 
-  def perform(charge_id)
-    charge = Charge.find(charge_id)
+  def perform(payment_id)
+    charge = Payment.find(payment_id)
 
     response = request(charge)
     parsed_response = JSON.parse(response.body) if response.success?
 
     raise StandardError, response.body unless response.status == 200
 
-    parsed_response['charge_id'] = charge.id
+    parsed_response['payment_id'] = charge.id
     parsed_response['status'] = 'authorized'
-    Rails.logger.info("Charge response: #{parsed_response}")
-    PaymentResponseJob.perform_later(parsed_response)
+    Rails.logger.info("Payment response: #{parsed_response}")
+    PaymentProducer.call(parsed_response)
   end
 
   private
@@ -37,7 +37,7 @@ class PaymentJob
       }.to_json
     end
   rescue Faraday::Error => e
-    logger.error("Charge request failed with error: #{e.message}")
+    logger.error("Payment request failed with error: #{e.message}")
     raise e
   end
 end
