@@ -1,7 +1,6 @@
 class PaymentConsumer
   include Hutch::Consumer
   consume 'payment.response'
-  queue_name 'payments'
 
   def process(args)
     logger.info("Starting PaymentResponseJob: #{args}")
