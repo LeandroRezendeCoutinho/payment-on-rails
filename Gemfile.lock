@@ -289,6 +289,8 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     set (1.1.0)
+    shoulda-matchers (6.1.0)
+      activesupport (>= 5.2.0)
     sidekiq (7.2.1)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -337,6 +339,7 @@ DEPENDENCIES
   ruby-lsp
   ruby-lsp-rails
   ruby-lsp-rspec
+  shoulda-matchers (~> 6.1)
   sidekiq (~> 7.2.1)
   tzinfo-data
 
