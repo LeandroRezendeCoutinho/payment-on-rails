@@ -36,17 +36,17 @@ gem 'bootsnap', require: false
 # gem "rack-cors"
 
 gem 'aws-sdk-sqs', '~> 1.70'
+gem 'dotenv'
 gem 'enumerize', '~> 2.5.0'
 gem 'faraday'
+gem 'hutch'
 gem 'money-rails', '~> 1.15'
 gem 'sidekiq', '~> 7.2.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
-  gem 'dotenv'
   gem 'factory_bot_rails', '~> 6.4.3'
-  gem 'hutch'
   gem 'rspec-rails', '~> 6.1.0'
   gem 'rubocop', '~> 1.60', require: false
   gem 'ruby-lsp', require: false
@@ -58,4 +58,8 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+end
+
+group :test do
+  gem 'rspec-sidekiq', '~> 4.1.0'
 end
