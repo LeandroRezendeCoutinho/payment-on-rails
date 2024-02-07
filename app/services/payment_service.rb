@@ -4,22 +4,24 @@ class PaymentService
   end
 
   def call
-    charge = Payment.find(@payment_id)
+    payment = Payment.find(@payment_id)
 
-    response = request(charge)
+    response = request(payment)
     parsed_response = JSON.parse(response.body) if response.success?
 
-    raise StandardError, response.body unless response.status == 200
-
-    parsed_response['payment_id'] = charge.id
-    parsed_response['status'] = 'authorized'
-    Rails.logger.info("Payment response: #{parsed_response}")
-    PaymentProducer.call(parsed_response)
+    if response.status == 200
+      parsed_response['payment_id'] = payment.id
+      parsed_response['status'] = 'authorized'
+      PaymentProducer.call(parsed_response)
+      Rails.logger.info("Payment id: #{@payment_id} response: #{parsed_response}")
+    else
+      Rails.logger.error("Payment request failed status: #{response.status} body: #{response.body}")
+    end
   end
 
   private
 
-  def request(charge)
+  def request(payment)
     conn = Faraday.new(
       url: 'http://localhost:3500',
       headers: { 'Content-Type' => 'application/json' }
@@ -27,16 +29,16 @@ class PaymentService
 
     conn.post('/payments') do |req|
       req.body = {
-        amount: charge.amount_cents,
-        capture: charge.capture,
-        status: charge.status || 'pending',
-        order_id: charge.order_id,
-        payment_type: charge.payment_type,
-        source_type: charge.source_type
+        amount: payment.amount_cents,
+        capture: payment.capture,
+        status: payment.status || 'pending',
+        order_id: payment.order_id,
+        payment_type: payment.payment_type,
+        source_type: payment.source_type
       }.to_json
     end
   rescue Faraday::Error => e
-    logger.error("Payment request failed with error: #{e.message}")
+    Rails.logger.error("Payment request failed with error: #{e.message}")
     raise e
   end
 end

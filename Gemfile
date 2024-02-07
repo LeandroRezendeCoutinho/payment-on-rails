@@ -62,4 +62,5 @@ end
 
 group :test do
   gem 'rspec-sidekiq', '~> 4.1.0'
+  gem 'webmock', '~> 3.20'
 end
