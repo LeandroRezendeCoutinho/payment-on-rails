@@ -32,4 +32,4 @@
 - `bundle exec rspec`
 
 ## Architecture
-![Architecture diagram](./images/architecture.png)
+![Architecture diagram](./images/architecture.jpg)
