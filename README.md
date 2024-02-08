@@ -6,7 +6,24 @@
 * Ruby version
 - 3.3.0
 
-* System dependencies
+* Rails version
+- 7.1.3
+
+* Application dependencies
+- pg
+- redis
+- sidekiq
+- hutch
+- enumerize
+- faraday
+- rspec
+- factory_bot
+- money
+- simple_cov
+- webmock
+- rubocop
+
+* Service dependencies
 - PostgreSQL
 - Redis
 - RabbitMQ
