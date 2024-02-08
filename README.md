@@ -9,30 +9,27 @@
 * System dependencies
 - PostgreSQL
 - Redis
-- AWS SQS
+- RabbitMQ
 
-* How to run the test suite
-- `bundle exec rspec`
-
-* Services (job queues, cache servers, search engines, etc.)
-- AWS SQS
+* Services (queues)
 - Sidekiq
+- Hutch 
 
 * Deployment 
 - Github actions
 - AWS
 
+* How to run the app
+- `bundle exec rails s -b '0.0.0.0'`
+
+* How to run the sidekiq
+- `bundle exec sidekiq config/sidekiq.yml`
+
+* How to run the hutch
+- `bundle exec hutch`
+
+* How to run the test suite
+- `bundle exec rspec`
+
 ## Architecture
 ![Architecture diagram](./images/architecture.png)
-
-### AWS localstack
-- Configure localstack
-    - `aws configure --endpoint-url=http://localhost:4566`
-        - AWS Access Key ID [None]: 00000000000000000000
-        - AWS Secret Access Key [None]: 00000000000000000000
-        - Default region name [None]: us-east-1
-- Configure AWS SQS
-    - `aws sqs create-queue --queue-name charge --endpoint-url=http://localhost:4566`
-
-#### AWS reference
-- https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/sqs-example-send-messages.html
