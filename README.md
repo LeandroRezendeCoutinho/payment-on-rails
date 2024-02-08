@@ -33,3 +33,6 @@
 
 ## Architecture
 ![Architecture diagram](./images/architecture.jpg)
+
+## Code coverage
+![Code coverage](./images/coverage.png)
