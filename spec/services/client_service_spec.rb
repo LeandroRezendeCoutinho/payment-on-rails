@@ -1,0 +1,17 @@
+require 'rails_helper'
+
+RSpec.describe ClientService do
+  describe "create_new_client" do
+    it "returns a new created client" do
+      service = ClientService.new
+      client = service.create_new_client
+      expect(client.id).to be_a(Integer)
+      expect(client.client_id).to be_a(String)
+      expect(client.public_key).to be_a(String)
+      expect(client.private_key).to be_a(String)
+      expect do
+        service.create_new_client
+      end.to change(Client, :count).by(1)
+    end
+  end
+end
