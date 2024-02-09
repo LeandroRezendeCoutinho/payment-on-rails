@@ -3,10 +3,10 @@ class PaymentConsumer
   consume 'payment.response'
 
   def process(args)
-    logger.info("Starting PaymentResponseJob: #{args}")
+    # logger.info("Starting PaymentResponseJob: #{args}")
     response = args['subject']
-    update_status(response)
     send_response(response)
+    update_status(response)
   end
 
   private

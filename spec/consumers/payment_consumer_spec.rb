@@ -36,6 +36,16 @@ describe PaymentConsumer do
 
         expect(Payment).to have_received(:update).with(123, status: 'authorized')
       end
+
+      describe 'when request fails' do
+        it 'raises an error' do
+          stub_request(:post, 'http://localhost:3500/webhooks').to_raise(Faraday::Error.new('Connection failed'))
+
+          expect do
+            PaymentConsumer.new.process(args)
+          end.to raise_error(StandardError, 'Connection failed')
+        end
+      end
     end
   end
 end
