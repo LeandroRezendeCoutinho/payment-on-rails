@@ -1,15 +1,15 @@
 # README
 
-* Payment on Rails
+## Payment on Rails
 - A Rails app for accepting payments
 
-* Ruby version
+### Ruby version
 - 3.3.0
 
-* Rails version
+### Rails version
 - 7.1.3
 
-* Application dependencies
+### Application dependencies
 - pg
 - redis
 - sidekiq
@@ -23,29 +23,29 @@
 - webmock
 - rubocop
 
-* Service dependencies
+### Service dependencies
 - PostgreSQL
 - Redis
 - RabbitMQ
 
-* Services (queues)
+### Services (queues)
 - Sidekiq
 - Hutch 
 
-* Deployment 
+### Deployment 
 - Github actions
 - AWS
 
-* How to run the app
+### How to run the app
 - `bundle exec rails s -b '0.0.0.0'`
 
-* How to run the sidekiq
+### How to run the sidekiq
 - `bundle exec sidekiq config/sidekiq.yml`
 
-* How to run the hutch
+### How to run the hutch
 - `bundle exec hutch`
 
-* How to run the test suite
+### How to run the test suite
 - `bundle exec rspec`
 
 ## Architecture
