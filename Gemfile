@@ -35,10 +35,11 @@ gem 'bootsnap', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
-gem 'dotenv'
+gem 'dotenv', '~> 2.8.1'
 gem 'enumerize', '~> 2.5.0'
-gem 'faraday'
-gem 'hutch'
+gem 'faraday', '~> 2.9.0'
+gem 'hutch', '~> 1.2.0'
+gem 'json-schema', '~> 4.1.1'
 gem 'money-rails', '~> 1.15'
 gem 'sidekiq', '~> 7.2.1'
 

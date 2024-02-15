@@ -131,6 +131,8 @@ GEM
       rdoc
       reline (>= 0.4.2)
     json (2.7.1)
+    json-schema (4.1.1)
+      addressable (>= 2.8)
     language_server-protocol (3.17.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -334,11 +336,12 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
-  dotenv
+  dotenv (~> 2.8.1)
   enumerize (~> 2.5.0)
   factory_bot_rails (~> 6.4.3)
-  faraday
-  hutch
+  faraday (~> 2.9.0)
+  hutch (~> 1.2.0)
+  json-schema (~> 4.1.1)
   money-rails (~> 1.15)
   pg (~> 1.1)
   puma (>= 5.0)
