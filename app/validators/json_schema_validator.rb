@@ -3,16 +3,24 @@
 class JsonSchemaValidator < ActiveModel::Validator
   SCHEMA = {
     'type' => 'object',
-    'required' => %w[baseUrl header config],
+    'required' => %w[provider mapping],
     'properties' => {
-      'baseUrl' => { 'type' => 'string' },
-      'payment_path' => { 'type' => 'string' },
-      'auth_path' => { 'type' => 'string' },
-      'header' => { 'type' => 'object' },
-      'config' => {
+      'provider' => {
+        'type' => 'object',
+        'required' => %w[name baseUrl payment_path auth_path auth_method credentials],
+        'properties' => {
+          'name' => { 'type' => 'string' },
+          'baseUrl' => { 'type' => 'string' },
+          'payment_path' => { 'type' => 'string' },
+          'auth_path' => { 'type' => 'string' },
+          'auth_method' => { 'type' => 'string' },
+          'credentials' => { 'type' => 'object' }
+        }
+      },
+      'mapping' => {
         'type' => 'array',
         'minItems' => 1,
-        'items' => {
+        'maps' => {
           'type' => 'object',
           'required' => %w[from to],
           'properties' => {
@@ -26,7 +34,7 @@ class JsonSchemaValidator < ActiveModel::Validator
   }.freeze
 
   def validate(record)
-    errors = JSON::Validator.fully_validate(SCHEMA, record.schema.to_json, errors_as_objects: true)
+    errors = JSON::Validator.fully_validate(SCHEMA, record.config.to_json, errors_as_objects: true)
     return if errors.empty?
 
     record.errors.add(:schema, message: errors)
