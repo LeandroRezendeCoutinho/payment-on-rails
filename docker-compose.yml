@@ -3,6 +3,7 @@ version: '3.8'
 services:
   web:
     build: .
+    container_name: web
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     volumes:
       - .:/app
@@ -12,6 +13,7 @@ services:
       - db
   sidekiq:
     build: .
+    container_name: sidekiq
     command: bundle exec sidekiq
     volumes:
       - .:/app
@@ -20,6 +22,7 @@ services:
       - redis
   hutch:
     build: .
+    container_name: hutch
     command: bundle exec hutch
     volumes:
       - .:/app
@@ -28,6 +31,7 @@ services:
       - rabbitmq
   db:
     image: postgres:16.1-alpine
+    container_name: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
@@ -39,6 +43,7 @@ services:
       - "5432:5432"
   redis:
     image: redis:7.2.4-alpine
+    container_name: redis
     restart: always
     ports:
       - '6379:6379'
