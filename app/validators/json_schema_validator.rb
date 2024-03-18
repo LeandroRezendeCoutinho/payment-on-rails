@@ -14,13 +14,19 @@ class JsonSchemaValidator < ActiveModel::Validator
           'payment_path' => { 'type' => 'string' },
           'auth_path' => { 'type' => 'string' },
           'auth_method' => { 'type' => 'string' },
-          'credentials' => { 'type' => 'object' }
+          'credentials' => {
+            'type' => 'object',
+            'properties' => {
+              'user' => { 'type' => 'string' },
+              'password' => { 'type' => 'string' }
+            }
+          }
         }
       },
       'mapping' => {
         'type' => 'array',
         'minItems' => 1,
-        'maps' => {
+        'items' => {
           'type' => 'object',
           'required' => %w[from to],
           'properties' => {
@@ -37,6 +43,6 @@ class JsonSchemaValidator < ActiveModel::Validator
     errors = JSON::Validator.fully_validate(SCHEMA, record.config.to_json, errors_as_objects: true)
     return if errors.empty?
 
-    record.errors.add(:schema, message: errors)
+    record.errors.add(:config, message: errors)
   end
 end

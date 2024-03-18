@@ -45,6 +45,14 @@ class IntegrationsController < ApplicationController
   end
 
   def integration_params
-    params.require(:integration).permit(:name, :config)
+    params.require(:integration).permit(
+      :name,
+      config: [
+        provider: [
+          :name, :baseUrl, :payment_path, :auth_path, :auth_method, credentials: [:user, :password] # rubocop:disable Style/HashAsLastArrayItem
+        ],
+        mapping: %i[from to function]
+      ]
+    )
   end
 end
