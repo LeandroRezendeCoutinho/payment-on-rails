@@ -57,9 +57,9 @@ services:
       - "15672:15672"  # RabbitMQ management plugin
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq  # Persist RabbitMQ data
-    # environment:
-    #   - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
-    #   - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
 volumes:
   redis_data:
   rabbitmq_data:
