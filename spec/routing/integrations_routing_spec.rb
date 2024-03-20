@@ -10,7 +10,6 @@ RSpec.describe IntegrationsController, type: :routing do
       expect(get: "/integrations/1").to route_to("integrations#show", id: "1")
     end
 
-
     it "routes to #create" do
       expect(post: "/integrations").to route_to("integrations#create")
     end

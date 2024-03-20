@@ -20,7 +20,7 @@ Bundler.require(*Rails.groups)
 Dotenv.load
 
 module PaymentOnRails
-  class Application < Rails::Application
+  class Application < Rails::Application # rubocop:disable Style/Documentation
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 

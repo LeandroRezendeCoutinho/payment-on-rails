@@ -5,6 +5,7 @@ Style/Documentation:
     - 'spec/**/*'
     - 'test/**/*'
     - 'app/**/*'
+    - 'db/**/*'
 
 Metrics/AbcSize:
   Max: 20

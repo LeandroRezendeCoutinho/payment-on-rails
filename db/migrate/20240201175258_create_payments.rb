@@ -1,4 +1,4 @@
-class CreatePayments < ActiveRecord::Migration[7.1] # rubocop:disable Style/Documentation
+class CreatePayments < ActiveRecord::Migration[7.1]
   def change
     create_table :payments do |t|
       t.monetize :amount
