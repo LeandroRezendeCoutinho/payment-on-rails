@@ -35,7 +35,7 @@ jobs:
           bundler-cache: true
       
       - name: Set up database schema
-        run: bin/rails db:schema:load db:create db:migrate
+        run: bin/rails db:create db:migrate
         
       - name: Run tests
         run: bin/bundle exec rspec
