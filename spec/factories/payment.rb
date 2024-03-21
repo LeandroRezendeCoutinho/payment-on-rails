@@ -6,5 +6,7 @@ FactoryBot.define do
     payment_type { 'credit' }
     source_type { 'card' }
     amount_cents { 100 }
+    client
+    integration
   end
 end

@@ -19,7 +19,12 @@ RSpec.describe PaymentsController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      let(:valid_params) { { payment: { capture: true, status: 'pending', order_id: 1, payment_type: 'credit', source_type: 'card' } } }
+      let(:client) { FactoryBot.create(:client) }
+      let(:integration) { FactoryBot.create(:integration, client:) }
+      let(:valid_params) do
+        { payment: { capture: true, status: 'pending', order_id: 1, payment_type: 'credit',
+                     source_type: 'card', client_id: client.id, integration_id: integration.id } }
+      end
 
       it 'creates a new payment' do
         expect do

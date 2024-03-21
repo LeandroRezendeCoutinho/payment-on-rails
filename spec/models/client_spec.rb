@@ -3,11 +3,12 @@
 # Table name: clients
 #
 #  id          :bigint           not null, primary key
-#  client_id   :string
-#  public_key  :string
+#  name        :string
 #  private_key :string
+#  public_key  :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  client_id   :string
 #
 require 'rails_helper'
 
@@ -19,6 +20,7 @@ RSpec.describe Client, type: :model do
 
     it 'validates format' do
       client = Client.new
+      client.name = 'Client Name'
       client.client_id = '17663c88-11e5-45c4-86be-4f56f47c694a'
       client.public_key = '7972cdfb-e088-499d-a3d7-ba37512697ed'
       client.private_key = '0f5efa78-4997-43e4-a5fe-e13f03c529b9'

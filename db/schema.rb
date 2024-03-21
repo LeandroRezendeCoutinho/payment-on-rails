@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_09_175816) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_19_181042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_175816) do
     t.string "private_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "integrations", force: :cascade do |t|
@@ -27,6 +28,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_175816) do
     t.json "config"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_integrations_on_client_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -39,6 +42,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_175816) do
     t.string "source_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.bigint "integration_id"
+    t.index ["client_id"], name: "index_payments_on_client_id"
+    t.index ["integration_id"], name: "index_payments_on_integration_id"
   end
 
 end

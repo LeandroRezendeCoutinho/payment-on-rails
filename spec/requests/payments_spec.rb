@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "/payments", type: :request do # rubocop:disable Metrics/BlockLength
+  let(:client) { FactoryBot.create(:client) }
+  let(:integration) { FactoryBot.create(:integration, client:) }
   let(:valid_attributes) do
     {
       amount_cents: 100,
@@ -9,7 +11,9 @@ RSpec.describe "/payments", type: :request do # rubocop:disable Metrics/BlockLen
       status: 'pending',
       order_id: '1',
       payment_type: 'credit',
-      source_type: 'card'
+      source_type: 'card',
+      client_id: client.id,
+      integration_id: integration.id
     }
   end
 
@@ -29,10 +33,10 @@ RSpec.describe "/payments", type: :request do # rubocop:disable Metrics/BlockLen
 
   describe "GET /index" do
     it "renders a successful response" do
-      Payment.create! valid_attributes
+      FactoryBot.create(:payment, client:, integration:)
       get payments_url, headers: valid_headers, as: :json
 
-      attributes = JSON.parse(response.body).first.symbolize_keys.except(:id)
+      attributes = JSON.parse(response.body).first.symbolize_keys.except(:id, :created_at, :updated_at)
 
       expect(response).to be_successful
       expect(JSON.parse(response.body)).to be_instance_of(Array)

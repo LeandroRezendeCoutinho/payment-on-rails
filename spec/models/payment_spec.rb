@@ -6,14 +6,20 @@
 #  amount_cents    :integer          default(0), not null
 #  amount_currency :string           default("BRL"), not null
 #  capture         :boolean
-#  status          :string
-#  order_id        :string
 #  payment_type    :string
 #  source_type     :string
+#  status          :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  client_id       :bigint
+#  integration_id  :bigint
+#  order_id        :string
 #
-# spec/models/payment_spec.rb
+# Indexes
+#
+#  index_payments_on_client_id       (client_id)
+#  index_payments_on_integration_id  (integration_id)
+#
 
 require 'rails_helper'
 

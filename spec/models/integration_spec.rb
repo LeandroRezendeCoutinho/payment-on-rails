@@ -3,10 +3,15 @@
 # Table name: integrations
 #
 #  id         :bigint           not null, primary key
-#  name       :string
 #  config     :json
+#  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  client_id  :bigint
+#
+# Indexes
+#
+#  index_integrations_on_client_id  (client_id)
 #
 require 'rails_helper'
 

@@ -32,6 +32,7 @@ class PaymentsController < ApplicationController
   end
 
   def payment_params
-    params.require(:payment).permit(:capture, :status, :order_id, :payment_type, :source_type)
+    params.require(:payment).permit(:capture, :status, :order_id, :payment_type, :source_type, :client_id,
+                                    :integration_id)
   end
 end
