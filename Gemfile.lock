@@ -83,7 +83,13 @@ GEM
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
     base64 (0.2.0)
+    better_errors (2.10.1)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
+      rouge (>= 1.0.0)
     bigdecimal (3.1.6)
+    binding_of_caller (1.0.1)
+      debug_inspector (>= 1.2.0)
     bootsnap (1.17.1)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -102,6 +108,7 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    debug_inspector (1.2.0)
     diff-lcs (1.5.0)
     docile (1.4.0)
     dotenv (2.8.1)
@@ -244,6 +251,7 @@ GEM
     reline (0.4.2)
       io-console (~> 0.5)
     rexml (3.2.6)
+    rouge (4.2.1)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -338,6 +346,8 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (~> 3.2.0)
+  better_errors
+  binding_of_caller
   bootsnap
   debug
   dotenv (~> 2.8.1)
