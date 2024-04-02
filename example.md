@@ -1,5 +1,16 @@
-
 ## Config register example
+
+```bash
+curl --request POST \
+  --url http://localhost:3000/clients \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/2023.5.8' \
+  --data '{
+	"client": {
+		"name": "John Doe"
+	}
+}'
+```
 
 ```bash
 curl --request POST \
@@ -46,7 +57,9 @@ curl --request POST \
 					"to":   "source_type"
 				}
 			]	
-		}		
+		},
+		"client_id": 1
 	}
-}'
+}
+'
 ```
