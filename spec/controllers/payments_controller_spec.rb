@@ -9,7 +9,7 @@ RSpec.describe PaymentsController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:payment) { FactoryBot.create(:payment) }
+    let(:payment) { create(:payment) }
 
     it 'returns a success response' do
       get :show, params: { id: payment.to_param }
@@ -19,8 +19,8 @@ RSpec.describe PaymentsController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      let(:client) { FactoryBot.create(:client) }
-      let(:integration) { FactoryBot.create(:integration, client:) }
+      let(:client) { create(:client) }
+      let(:integration) { create(:integration, client:) }
       let(:valid_params) do
         { payment: { capture: true, status: 'pending', order_id: 1, payment_type: 'credit',
                      source_type: 'card', client_id: client.id, integration_id: integration.id } }
