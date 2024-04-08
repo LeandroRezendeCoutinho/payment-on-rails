@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ClientsController, type: :controller do
   describe 'GET #show' do
-    let(:client) { FactoryBot.create(:client) }
+    let(:client) { create(:client) }
 
     it 'returns client information for valid client ID' do
       get :show, params: { id: client.id }

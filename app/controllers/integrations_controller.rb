@@ -42,11 +42,14 @@ class IntegrationsController < ApplicationController
 
   def set_integration
     @integration = Integration.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Integration not found' }, status: :not_found
   end
 
   def integration_params
     params.require(:integration).permit(
       :name,
+      :client_id,
       config: [
         provider: [
           :name, :baseUrl, :payment_path, :auth_path, :auth_method, credentials: [:user, :password] # rubocop:disable Style/HashAsLastArrayItem
