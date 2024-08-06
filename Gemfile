@@ -48,14 +48,15 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails', '~> 6.4.3'
   gem 'rails-controller-testing'
+  gem 'rbs'
   gem 'rspec-rails', '~> 6.1.0'
   gem 'rubocop', '~> 1.60', require: false
   gem 'ruby-lsp', require: false
   gem 'ruby-lsp-rails'
   gem 'ruby-lsp-rspec', require: false
   gem 'shoulda-matchers', '~> 6.1'
-
   gem 'solargraph'
+  gem 'steep'
 end
 
 group :development do
