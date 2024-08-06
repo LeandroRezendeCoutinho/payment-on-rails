@@ -54,6 +54,8 @@ group :development, :test do
   gem 'ruby-lsp-rails'
   gem 'ruby-lsp-rspec', require: false
   gem 'shoulda-matchers', '~> 6.1'
+
+  gem 'solargraph'
 end
 
 group :development do
