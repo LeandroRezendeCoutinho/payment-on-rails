@@ -10,7 +10,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - postgres
   sidekiq:
     build: .
     container_name: sidekiq
@@ -18,7 +18,7 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - db
+      - postgres
       - redis
   hutch:
     build: .
@@ -27,7 +27,7 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - db
+      - postgres
       - rabbitmq
   postgres:
     image: postgres:17.4-alpine
