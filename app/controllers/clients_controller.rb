@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
   end
 
   def create
-    client = ClientService.new.create_new_client
+    client = Clients::Create.call
     client.name = client_params[:name]
     if client.save
       render json: client, status: :created

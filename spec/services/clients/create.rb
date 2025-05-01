@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ClientService do
+RSpec.describe Clients::Create do
   describe "create_new_client" do
     it "returns a new created client" do
       client = ClientService.new.create_new_client
