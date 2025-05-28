@@ -1,9 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe PaymentService do
+RSpec.describe Payments::Create do
   describe '#call' do
     let(:payment_id) { 123 }
-    let(:charge) { instance_double('Payment', id: payment_id, amount_cents: 1000, capture: true, status: 'pending', order_id: 1, payment_type: 'credit', source_type: 'card') }
+    let(:charge) do
+      instance_double('Payment', id: payment_id, amount_cents: 1000, capture: true, status: 'pending',
+                                 order_id: 1, payment_type: 'credit', source_type: 'card')
+    end
     let(:response_body) { { payment_id:, status: 'authorized' }.to_json }
 
     it 'makes a request to the external service and processes the response' do
@@ -25,7 +28,7 @@ RSpec.describe PaymentService do
       expect(PaymentProducer).to receive(:call).with(JSON.parse(response_body))
 
       expect do
-        PaymentService.new(payment_id).call
+        Payments::Create.call(payment_id)
       end.not_to raise_error
     end
 
@@ -35,7 +38,7 @@ RSpec.describe PaymentService do
       stub_request(:post, 'http://localhost:3500/payments').to_raise(Faraday::Error.new('Connection failed'))
 
       expect do
-        PaymentService.new(payment_id).call
+        Payments::Create.call(payment_id)
       end.to raise_error(StandardError, 'Connection failed')
     end
   end
