@@ -5,6 +5,6 @@ class PaymentJob
   sidekiq_options queue: 'default', retry: 5
 
   def perform(payment_id)
-    PaymentService.new(payment_id).call
+    Payments::Create.call(payment_id)
   end
 end

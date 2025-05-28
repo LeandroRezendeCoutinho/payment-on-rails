@@ -8,13 +8,13 @@ RSpec.describe PaymentJob, type: :job do
     let(:payment_id) { 123 }
 
     it 'calls PaymentService with the correct payment_id' do
-      expect(PaymentService).to receive(:new).with(payment_id).and_return(double('PaymentService', call: nil))
+      expect(Payments::Create).to receive(:call).with(payment_id)
       PaymentJob.new.perform(payment_id)
     end
 
     it 'calls the call method on PaymentService' do
-      payment_service = instance_double('PaymentService', call: nil)
-      allow(PaymentService).to receive(:new).and_return(payment_service)
+      payment_service = instance_double('Payments::Create', call: nil)
+      allow(Payments::Create).to receive(:new).and_return(payment_service)
 
       PaymentJob.new.perform(payment_id)
 
