@@ -3,6 +3,15 @@
 ## Payment on Rails
 - A Rails app for accepting payments
 
+### Ideas
+- Use json to configure contracts
+- Abstract external contracts to intermediary abstration (adapter)
+- Use json schemas to map external contracts to internal contract
+- Use configuration to abstract authentication
+
+#### Objectives
+  - Use a strategy like pattern to connect to many payment providers based on configuration, implementing as less as possible details of contracts.
+
 ### Ruby version
 - 3.3.0
 
